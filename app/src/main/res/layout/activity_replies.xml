@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,4 +7,133 @@
         android:layout_height="match_parent"
         tools:context=".mvvm.activity.repliesactivity.RepliesActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#b1edb7">
+            <ImageView
+                    android:layout_margin="10dp"
+                    android:id="@+id/back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_back"
+                    android:foreground="?android:selectableItemBackground"
+            />
+            <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:text="Replies"
+                      android:gravity="center"
+                      android:fontFamily="@font/maitree_semibold"
+                      android:textSize="20sp"/>
+        </RelativeLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/thread_collapse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/app_bar">
+        <android.support.v7.widget.CardView
+                android:id="@+id/thread_type_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                app:cardBackgroundColor="#b4d5e7"
+                android:clickable="true"
+                android:foreground="?android:selectableItemBackground">
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                <TextView
+                        android:id="@+id/question_no"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        tools:text="Q 12324561"
+                        android:fontFamily="@font/maitree_bold"
+                        android:layout_below="@id/dept"
+                />
+                <TextView
+                        android:id="@+id/subject"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/maitree_bold"
+                        tools:text="Python"
+                        android:layout_below="@id/dept"
+                        android:layout_alignParentEnd="true"
+                />
+                <android.support.v7.widget.CardView
+                        android:id="@+id/thread_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:elevation="5dp"
+                        app:cardCornerRadius="5dp"
+                        android:layout_below="@id/question_no">
+                    <TextView android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_margin="5dp"
+                              android:fontFamily="@font/maitree_medium"
+                              android:id="@+id/thread"
+                              android:maxLines="4"
+                              tools:text="Hey this is a very big problem hence i have got a solution for it."/>
+                </android.support.v7.widget.CardView>
+                <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/maitree_medium"
+                        tools:text="01:28"
+                        android:layout_below="@id/thread_card"/>
+                <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/maitree_medium"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentStart="true"
+                        tools:text="01/10/2018"
+                        android:layout_below="@id/thread_card"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </android.support.design.widget.CollapsingToolbarLayout>
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/all_replies"
+            android:layout_width="match_parent"
+            android:layout_below="@id/thread_collapse"
+            android:layout_above="@id/reply_text"
+            android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.v7.widget.CardView android:layout_width="match_parent"
+                                        android:id="@+id/reply_text"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+            <EditText
+                    android:id="@+id/reply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Type a message"
+                    android:layout_toLeftOf="@id/send"
+            />
+            <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_send"
+                    android:backgroundTint="#FF6BE477"
+                    app:fabSize="mini"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

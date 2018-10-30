@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+            android:id="@+id/reply_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="50dp"
+            android:elevation="5dp"
+            app:cardBackgroundColor="#f7ddb2"
+            app:cardCornerRadius="10dp"
+            android:clickable="true"
+            android:visibility="gone"
+            android:foreground="?android:selectableItemBackground">
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/reg_no_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="RA1611020010081"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/maitree_semibold"/>
+            <TextView
+                    android:id="@+id/dept_reply"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Software Engineering"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_below="@id/reg_no_reply"
+                    android:fontFamily="@font/maitree_semibold"
+            />
+            <android.support.v7.widget.CardView
+                    android:id="@+id/thread_reply_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:elevation="5dp"
+                    app:cardCornerRadius="5dp"
+                    android:layout_below="@id/dept_reply">
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_margin="5dp"
+                          android:fontFamily="@font/maitree_medium"
+                          android:id="@+id/thread_reply"
+                          android:maxLines="4"
+                          tools:text="Hey this is a very big problem hence i have got a solution for it."/>
+            </android.support.v7.widget.CardView>
+            <TextView
+                    android:id="@+id/time_reply"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/maitree_medium"
+                    tools:text="01:28"
+                    android:layout_below="@id/thread_reply_card"/>
+            <TextView
+                    android:id="@+id/date_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/maitree_medium"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentStart="true"
+                    tools:text="01/10/2018"
+                    android:layout_below="@id/thread_reply_card"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+            android:id="@+id/user_reply_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="5dp"
+            app:cardBackgroundColor="#e4b0f1"
+            app:cardCornerRadius="10dp"
+            android:clickable="true"
+            android:visibility="visible"
+            android:foreground="?android:selectableItemBackground">
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/user_reg_no_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="RA1611020010081"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/maitree_semibold"/>
+            <TextView
+                    android:id="@+id/user_dept_reply"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Software Engineering"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_below="@id/user_reg_no_reply"
+                    android:fontFamily="@font/maitree_semibold"
+            />
+            <android.support.v7.widget.CardView
+                    android:id="@+id/user_thread_reply_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:elevation="5dp"
+                    app:cardCornerRadius="5dp"
+                    android:layout_below="@id/user_dept_reply">
+                <TextView android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_margin="5dp"
+                          android:fontFamily="@font/maitree_medium"
+                          android:id="@+id/user_thread_reply"
+                          android:maxLines="4"
+                          tools:text="Hey this is a very big problem hence i have got a solution for it."/>
+            </android.support.v7.widget.CardView>
+            <TextView
+                    android:id="@+id/user_time_reply"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/maitree_medium"
+                    tools:text="01:28"
+                    android:layout_below="@id/user_thread_reply_card"/>
+            <TextView
+                    android:id="@+id/user_date_reply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/maitree_medium"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentStart="true"
+                    tools:text="01/10/2018"
+                    android:layout_below="@id/user_thread_reply_card"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
