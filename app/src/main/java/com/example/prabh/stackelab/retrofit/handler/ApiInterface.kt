@@ -4,6 +4,7 @@ import android.support.annotation.Keep
 import com.example.prabh.stackelab.retrofit.model.AddGeneric
 import com.example.prabh.stackelab.retrofit.model.RecentThreads
 import com.example.prabh.stackelab.retrofit.model.Replies
+import com.example.prabh.stackelab.retrofit.model.SendReply
 import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -31,6 +32,12 @@ interface ApiInterface {
     @POST("listAllReply")
     fun getReplies(@Field("thread_id") threadId:String,@Field("register_no") registerNo:String): Observable<Replies>
 
+    @FormUrlEncoded
+    @POST("addReply")
+    fun sendReply(@Field("thread_id") threadId:String,@Field("register_no") registerNo: String,@Field("reply_text") replyText:String):Observable<SendReply>
 
+    @FormUrlEncoded
+    @POST("addFcmToken")
+    fun addFcmToken(@Field("fcm_token") token:String,@Field("register_no") registerNo: String):Observable<AddGeneric>
 
 }

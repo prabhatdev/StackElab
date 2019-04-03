@@ -22,12 +22,12 @@ class RepliesAdapter(val itemsList: ArrayList<Reply>, val repliesActivity: Repli
         holder.bindData(itemsList[position])
     }
 
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindData(reply: Reply) {
             if(reply.register_no==repliesActivity.session.getStringValue(Session.REGISTER_NUMBER)){
                 itemView.user_reply_card.visibility=View.VISIBLE
                 itemView.reply_card.visibility=View.GONE
-
                 itemView.user_reg_no_reply.text=reply.register_no
                 itemView.user_dept_reply.text=reply.dept
                 itemView.user_date_reply.text=reply.created_at.subSequence(0,10)

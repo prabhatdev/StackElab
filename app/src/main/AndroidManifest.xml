@@ -15,7 +15,7 @@
         <activity android:name=".mvvm.activity.mainactivity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
+                <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -32,6 +32,23 @@
         </activity>
         <activity android:name=".mvvm.activity.repliesactivity.RepliesActivity">
         </activity>
+
+
+        <service
+                android:name=".firebase.FirebaseInstanceIdService"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+                android:exported="false"
+                android:name=".firebase.FirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

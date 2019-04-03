@@ -30,6 +30,20 @@ class MainActivityViewModel : ViewModel() {
             ))
     }
 
+    fun addFcmToken(registerNumber:String,token:String){
+        val mApiService = Utils.interfaceService
+        compositeDisposable.add(mApiService.addFcmToken(token, registerNumber)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                response.value = Response.loading(ApiType.SAVE_FCM_TOKEN)
+            }
+            .subscribe(
+                { it: AddGeneric -> response.value = Response.success(ApiType.SAVE_FCM_TOKEN, it) },
+                { throwable: Throwable? -> response.value = Response.error(ApiType.SAVE_FCM_TOKEN, throwable!!) }
+            ))
+    }
+
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.clear()

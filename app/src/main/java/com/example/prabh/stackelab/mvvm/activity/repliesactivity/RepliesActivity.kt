@@ -8,6 +8,8 @@ import com.example.prabh.stackelab.R
 import com.example.prabh.stackelab.mvvm.application.StackElabApplication
 import com.example.prabh.stackelab.retrofit.model.Replies
 import com.example.prabh.stackelab.retrofit.model.Reply
+import com.example.prabh.stackelab.retrofit.model.SendReply
+import com.example.prabh.stackelab.utility.ApiType
 import com.example.prabh.stackelab.utility.Response
 import com.example.prabh.stackelab.utility.Session
 import com.example.prabh.stackelab.utility.Status
@@ -19,6 +21,8 @@ class RepliesActivity : StackElabApplication() {
     @Inject
     lateinit var repliesActivityViewModel: RepliesActivityViewModel
 
+    var allReplies=ArrayList<Reply>()
+
     var threadId = null.toString()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +32,21 @@ class RepliesActivity : StackElabApplication() {
     }
 
     private fun initialise() {
-        val intent=getIntent()
-        threadId = intent.getIntExtra("thread_id",-1).toString()
+        val intent = getIntent()
+        threadId = intent.getIntExtra("thread_id", -1).toString()
         observeResponse()
         getReplies()
+        send.setOnClickListener {
+            if(!reply_message.text.isEmpty())
+            {
+            sendReply(reply_message.text.toString())
+                reply_message.text.clear()
+            }
+        }
+    }
+
+    private fun sendReply(replyText: String) {
+        repliesActivityViewModel.sendReply(threadId,session.getStringValue(Session.REGISTER_NUMBER),replyText)
     }
 
     private fun getReplies() {
@@ -60,17 +75,37 @@ class RepliesActivity : StackElabApplication() {
     }
 
     private fun processResult(response: Response) {
-        val replies = response.result as Replies
-        if (replies.status == "ok") {
-            question_no.text = replies.result.thread.question_no.toString()
-            subject.text = replies.result.thread.subject
-            thread.text = replies.result.thread.query
-            date.text = replies.result.thread.created_at.subSequence(0, 10)
-            time.text = replies.result.thread.created_at.subSequence(11, 16)
-            all_replies.layoutManager=LinearLayoutManager(this)
-            all_replies.adapter=RepliesAdapter(replies.result.replies as ArrayList<Reply>,this@RepliesActivity)
-        } else {
-            showToast(replies.error)
+        when (response.apiType) {
+
+            ApiType.GET_ALL_REPLY -> {
+                val replies = response.result as Replies
+                if (replies.status == "ok") {
+                    question_no.text = replies.result.thread.question_no.toString()
+                    subject.text = replies.result.thread.subject
+                    thread.text = replies.result.thread.query
+                    date.text = replies.result.thread.created_at.subSequence(0, 10)
+                    time.text = replies.result.thread.created_at.subSequence(11, 16)
+                    allReplies=replies.result.replies as ArrayList<Reply>
+                    all_replies.layoutManager = LinearLayoutManager(this)
+                    all_replies.adapter = RepliesAdapter(allReplies, this@RepliesActivity)
+                } else {
+                    showToast(replies.error)
+                }
+            }
+            ApiType.SEND_REPLY -> {
+                val sendReply=response.result as SendReply
+                if(sendReply.status=="ok"){
+                    val reply=Reply(sendReply.result.created_at,
+                        sendReply.result.dept,sendReply.result.name,
+                        sendReply.result.register_no,0,sendReply.result.reply_text,"0")
+                    allReplies.add(reply)
+                    all_replies.adapter?.notifyDataSetChanged()
+                    all_replies.smoothScrollToPosition(allReplies.size)
+                }
+            }
+
+            else -> {
+            }
         }
     }
 }

@@ -111,29 +111,30 @@
             android:layout_height="match_parent">
     </android.support.v7.widget.RecyclerView>
 
-    <android.support.v7.widget.CardView android:layout_width="match_parent"
-                                        android:id="@+id/reply_text"
-                                        android:layout_alignParentBottom="true"
-                                        android:layout_height="wrap_content">
-        <RelativeLayout android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:id="@+id/reply_text"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            app:cardCornerRadius="30dp"
+                                            android:elevation="5dp"
+                                            android:layout_toStartOf="@id/send">
             <EditText
-                    android:id="@+id/reply"
+                    android:layout_marginHorizontal="10dp"
+                    android:id="@+id/reply_message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Type a message"
-                    android:layout_toLeftOf="@id/send"
             />
-            <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/send"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_send"
-                    android:backgroundTint="#FF6BE477"
-                    app:fabSize="mini"/>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
+        </android.support.v7.widget.CardView>
+        <android.support.design.widget.FloatingActionButton
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_send"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="#FF6BE477"/>
+    </RelativeLayout>
 </RelativeLayout>

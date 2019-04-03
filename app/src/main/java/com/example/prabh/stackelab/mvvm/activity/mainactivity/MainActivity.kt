@@ -43,6 +43,8 @@ class MainActivity : StackElabApplication() {
         }
     }
 
+
+
     private fun checkLogin() {
         if(!register_no.text.toString().isEmpty() && !password.text.toString().isEmpty())
         {
